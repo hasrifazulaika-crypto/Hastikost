@@ -6,116 +6,116 @@ import pandas as pd
 import streamlit as st
 
 st.set_page_config(
-    page_title="KOS MANAGER - Smart Boarding House",
-    page_icon="🌸",
+    page_title="KOS MANAGER - Sweet Cute Boarding House",
+    page_icon="🍓",
     layout="wide",
 )
 
-DUSTY_PINK_CSS = """
+CUTE_PINK_CSS = """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap');
 
 html, body, [class*="css"] {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .stApp {
-    background: linear-gradient(160deg, #FDF6F8 0%, #F9ECF0 55%, #F5E3E9 100%);
-    color: #3A252E;
+    background: linear-gradient(155deg, #FFF7FA 0%, #FDECF2 52%, #F9E1EA 100%);
+    color: #3D242E;
 }
 
 [data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #E8C3CE 0%, #DDB0BE 100%);
-    border-right: 1px solid #CFA0AE;
+    background: linear-gradient(180deg, #F6CBD9 0%, #EAB6C7 100%);
+    border-right: 1px solid #DDA2B6;
 }
 
 [data-testid="stSidebar"] * {
-    color: #331D27 !important;
+    color: #381F29 !important;
 }
 
-.hero-banner {
-    background: linear-gradient(120deg, #C98A9E 0%, #B47287 60%, #9E5E73 100%);
+.cute-hero {
+    background: linear-gradient(125deg, #D98BA4 0%, #C77490 58%, #B25E7B 100%);
     color: #FFFFFF;
-    padding: 1.5rem 1.8rem;
-    border-radius: 20px;
-    margin-bottom: 1.3rem;
-    box-shadow: 0 10px 25px rgba(158, 94, 115, 0.18);
+    padding: 1.45rem 1.75rem;
+    border-radius: 24px;
+    margin-bottom: 1.25rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 10px 24px rgba(178, 94, 123, 0.16);
 }
 
-.hero-banner h1 {
+.cute-hero h1 {
     margin: 0;
-    font-size: 1.75rem;
+    font-size: 1.7rem;
     font-weight: 700;
-    letter-spacing: -0.02em;
     color: #FFFFFF;
+    letter-spacing: -0.01em;
 }
 
-.hero-banner p {
-    margin: 0.35rem 0 0 0;
-    font-size: 0.95rem;
-    color: #FCEEF3;
-    opacity: 0.95;
+.cute-hero p {
+    margin: 0.3rem 0 0 0;
+    font-size: 0.94rem;
+    color: #FFF4F8;
+    font-weight: 500;
 }
 
-.section-card {
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(8px);
-    border: 1px solid #EED4DC;
-    border-radius: 18px;
-    padding: 1.25rem 1.4rem;
-    margin-bottom: 1.2rem;
-    box-shadow: 0 6px 18px rgba(180, 114, 135, 0.08);
+.soft-box {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1.5px solid #F3D2DE;
+    border-radius: 22px;
+    padding: 1.2rem 1.35rem;
+    margin-bottom: 1.15rem;
+    box-shadow: 0 6px 18px rgba(199, 116, 144, 0.08);
 }
 
 [data-testid="stMetric"] {
     background: #FFFFFF;
-    border: 1px solid #ECCFD8;
-    border-radius: 16px;
-    padding: 0.95rem 1.1rem;
-    box-shadow: 0 4px 14px rgba(180, 114, 135, 0.07);
+    border: 1.5px solid #F2CEDB;
+    border-radius: 20px;
+    padding: 0.9rem 1.05rem;
+    box-shadow: 0 4px 14px rgba(199, 116, 144, 0.08);
 }
 
 [data-testid="stMetricLabel"] {
-    color: #7D5462 !important;
-    font-weight: 600;
+    color: #875567 !important;
+    font-weight: 700;
     font-size: 0.82rem;
 }
 
 [data-testid="stMetricValue"] {
-    color: #3A222B !important;
+    color: #3D222C !important;
     font-weight: 700;
 }
 
 .stButton > button, .stFormSubmitButton > button, [data-testid="stLinkButton"] > a, [data-testid="stDownloadButton"] > button {
-    background: linear-gradient(135deg, #C48398 0%, #AC687E 100%) !important;
+    background: linear-gradient(135deg, #D1829C 0%, #B86581 100%) !important;
     color: #FFFFFF !important;
     border: none !important;
-    border-radius: 12px !important;
-    font-weight: 600 !important;
-    padding: 0.48rem 1rem !important;
-    box-shadow: 0 4px 12px rgba(172, 104, 126, 0.22) !important;
-    transition: all 0.2s ease !important;
+    border-radius: 999px !important;
+    font-weight: 700 !important;
+    padding: 0.45rem 1.1rem !important;
+    box-shadow: 0 4px 12px rgba(184, 101, 129, 0.22) !important;
+    transition: all 0.18s ease !important;
 }
 
 .stButton > button:hover, .stFormSubmitButton > button:hover, [data-testid="stLinkButton"] > a:hover, [data-testid="stDownloadButton"] > button:hover {
-    background: linear-gradient(135deg, #B57288 0%, #96546A 100%) !important;
+    background: linear-gradient(135deg, #C2708B 0%, #9E506B 100%) !important;
     transform: translateY(-1px);
 }
 
 [data-testid="stExpander"] {
-    background: #FFF9FB;
-    border: 1px solid #EBCFD8;
-    border-radius: 16px;
+    background: #FFFBFD;
+    border: 1.5px solid #F1CDD9;
+    border-radius: 20px;
 }
 
 hr {
-    border-color: #E8C7D2 !important;
-    opacity: 0.7;
+    border-color: #F0CBD8 !important;
+    opacity: 0.8;
 }
 </style>
 """
 
-st.markdown(DUSTY_PINK_CSS, unsafe_allow_html=True)
+st.markdown(CUTE_PINK_CSS, unsafe_allow_html=True)
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DB_DIR = os.path.join(BASE_DIR, "database")
@@ -213,7 +213,7 @@ def init_db():
         value TEXT NOT NULL
     );
     """)
-    cur.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('kos_name', 'KOS MANAGER - Smart Boarding House')")
+    cur.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('kos_name', 'KOS MANAGER - Sweet Cute Boarding House')")
     cur.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('bank_info', 'BCA 1234567890 a.n. Pemilik Kos')")
     if cur.execute("SELECT COUNT(*) AS c FROM rooms").fetchone()["c"] == 0:
         cur.execute("INSERT INTO rooms (room_number, room_type, monthly_price, facilities, status) VALUES (?, ?, ?, ?, 'terisi')", ("A-01", "AC + Kamar Mandi Dalam", 1200000, "AC, Kasur, Lemari, Wi-Fi, KM Dalam"))
@@ -232,7 +232,7 @@ init_db()
 
 def render_banner(title: str, subtitle: str):
     st.markdown(f"""
-    <div class="hero-banner">
+    <div class="cute-hero">
         <h1>{title}</h1>
         <p>{subtitle}</p>
     </div>
@@ -240,7 +240,7 @@ def render_banner(title: str, subtitle: str):
 
 def admin_view():
     conn = get_db()
-    render_banner("🌸 KOS MANAGER", "Dashboard Pengelola Kos — Kelola kamar, penghuni, tagihan WhatsApp, dan laporan keuangan.")
+    render_banner("🍓 KOS MANAGER", "Kelola kamar, penghuni, tagihan WhatsApp, dan catatan keuangan dengan tampilan manis & rapi.")
 
     total_rooms = conn.execute("SELECT COUNT(*) AS c FROM rooms").fetchone()["c"]
     occupied = conn.execute("SELECT COUNT(*) AS c FROM rooms WHERE status='terisi'").fetchone()["c"]
@@ -252,12 +252,12 @@ def admin_view():
     net_profit = income - expense
 
     tab_dash, tab_rooms, tab_tenants, tab_invoices, tab_finance, tab_complaints = st.tabs([
-        "📊 Ringkasan",
+        "🌷 Ringkasan",
         "🛏️ Kamar",
         "👥 Penghuni",
         "🧾 Tagihan & WA",
-        "💰 Pengeluaran & Laporan",
-        "🛠️ Keluhan",
+        "💰 Pengeluaran",
+        "💌 Keluhan",
     ])
 
     with tab_dash:
@@ -273,12 +273,12 @@ def admin_view():
         c7.metric("Pengeluaran", format_rp(expense))
         c8.metric("Laba Bersih", format_rp(net_profit))
         st.write("")
-        st.markdown('<div class="section-card"><h4>Grafik Ringkasan Keuangan</h4>', unsafe_allow_html=True)
+        st.markdown('<div class="soft-box"><h4>Grafik Ringkasan Keuangan</h4>', unsafe_allow_html=True)
         chart_df = pd.DataFrame({
             "Kategori": ["Pendapatan Lunas", "Piutang", "Pengeluaran", "Laba Bersih"],
             "Jumlah (Rp)": [income, receivable, expense, net_profit],
         }).set_index("Kategori")
-        st.bar_chart(chart_df, color="#C27D93")
+        st.bar_chart(chart_df, color="#CC7693")
         st.markdown('</div>', unsafe_allow_html=True)
 
     with tab_rooms:
@@ -302,10 +302,11 @@ def admin_view():
 
         rooms = conn.execute("SELECT * FROM rooms ORDER BY room_number").fetchall()
         if rooms:
-            st.markdown('<div class="section-card"><h4>Daftar Kamar Kos</h4>', unsafe_allow_html=True)
+            st.markdown('<div class="soft-box"><h4>Daftar Kamar Kos</h4>', unsafe_allow_html=True)
             df_rooms = pd.DataFrame([dict(r) for r in rooms])
             df_rooms["monthly_price"] = df_rooms["monthly_price"].apply(format_rp)
             st.dataframe(df_rooms, use_container_width=True, hide_index=True)
+
             col_a, col_b, col_c = st.columns([2, 2, 1])
             room_map = {f"{r['room_number']} ({r['status']})": r["id"] for r in rooms}
             sel_room = col_a.selectbox("Pilih Kamar untuk Update Status", list(room_map.keys()))
@@ -315,6 +316,21 @@ def admin_view():
                 conn.commit()
                 st.success("Status kamar diperbarui.")
                 st.rerun()
+
+            st.divider()
+            col_d1, col_d2 = st.columns([3, 1])
+            del_room_map = {f"{r['room_number']} — {r['room_type']}": r["id"] for r in rooms}
+            sel_del_room = col_d1.selectbox("Hapus Data Kamar (Jika Salah Input)", list(del_room_map.keys()), key="del_room_sel")
+            if col_d2.button("🗑️ Hapus Kamar", key="del_room_btn"):
+                target_rid = del_room_map[sel_del_room]
+                has_tenant = conn.execute("SELECT COUNT(*) AS c FROM tenants WHERE room_id = ?", (target_rid,)).fetchone()["c"]
+                if has_tenant > 0:
+                    st.warning("Kamar masih terhubung ke data penghuni. Hapus/pindahkan data penghuni terlebih dahulu.")
+                else:
+                    conn.execute("DELETE FROM rooms WHERE id = ?", (target_rid,))
+                    conn.commit()
+                    st.success("Data kamar berhasil dihapus.")
+                    st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
 
     with tab_tenants:
@@ -345,12 +361,32 @@ def admin_view():
                             st.success("Penghuni berhasil ditambahkan!")
                             st.rerun()
 
-        tenants = conn.execute("SELECT t.id, t.full_name, r.room_number, t.whatsapp, t.email, t.start_date, t.monthly_rate, t.is_active FROM tenants t LEFT JOIN rooms r ON t.room_id = r.id ORDER BY t.is_active DESC, t.full_name").fetchall()
+        tenants = conn.execute("SELECT t.id, t.full_name, t.room_id, r.room_number, t.whatsapp, t.email, t.start_date, t.monthly_rate, t.is_active FROM tenants t LEFT JOIN rooms r ON t.room_id = r.id ORDER BY t.is_active DESC, t.full_name").fetchall()
         if tenants:
-            st.markdown('<div class="section-card"><h4>Daftar Penghuni</h4>', unsafe_allow_html=True)
-            df_t = pd.DataFrame([dict(t) for t in tenants])
+            st.markdown('<div class="soft-box"><h4>Daftar Penghuni</h4>', unsafe_allow_html=True)
+            df_t = pd.DataFrame([{k: v for k, v in dict(t).items() if k != "room_id"} for t in tenants])
             df_t["monthly_rate"] = df_t["monthly_rate"].apply(format_rp)
             st.dataframe(df_t, use_container_width=True, hide_index=True)
+
+            st.divider()
+            col_td1, col_td2 = st.columns([3, 1])
+            del_t_map = {f"{t['full_name']} (Kamar {t['room_number'] or '-'})": t for t in tenants}
+            sel_del_t = col_td1.selectbox("Hapus Data Penghuni (Jika Salah Input)", list(del_t_map.keys()), key="del_tenant_sel")
+            if col_td2.button("🗑️ Hapus Penghuni", key="del_tenant_btn"):
+                t_target = del_t_map[sel_del_t]
+                cur = conn.cursor()
+                inv_ids = [row["id"] for row in cur.execute("SELECT id FROM invoices WHERE tenant_id = ?", (t_target["id"],)).fetchall()]
+                if inv_ids:
+                    placeholders = ",".join("?" for _ in inv_ids)
+                    cur.execute(f"DELETE FROM payments WHERE invoice_id IN ({placeholders})", inv_ids)
+                cur.execute("DELETE FROM invoices WHERE tenant_id = ?", (t_target["id"],))
+                cur.execute("DELETE FROM complaints WHERE tenant_id = ?", (t_target["id"],))
+                cur.execute("DELETE FROM tenants WHERE id = ?", (t_target["id"],))
+                if t_target["room_id"]:
+                    cur.execute("UPDATE rooms SET status = 'tersedia' WHERE id = ?", (t_target["room_id"],))
+                conn.commit()
+                st.success("Data penghuni berhasil dihapus dan status kamar dikembalikan menjadi tersedia.")
+                st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
 
     with tab_invoices:
@@ -394,9 +430,15 @@ def admin_view():
                         conn.commit()
                         st.success("Pembayaran dikonfirmasi LUNAS!")
                         st.rerun()
+                if c4.button("🗑️ Hapus Tagihan", key=f"del_inv_{inv['id']}"):
+                    conn.execute("DELETE FROM payments WHERE invoice_id = ?", (inv["id"],))
+                    conn.execute("DELETE FROM invoices WHERE id = ?", (inv["id"],))
+                    conn.commit()
+                    st.success("Tagihan berhasil dihapus.")
+                    st.rerun()
 
     with tab_finance:
-        st.markdown('<div class="section-card"><h4>Catat Pengeluaran Operasional</h4>', unsafe_allow_html=True)
+        st.markdown('<div class="soft-box"><h4>Catat Pengeluaran Operasional</h4>', unsafe_allow_html=True)
         with st.form("add_exp_form"):
             c1, c2, c3, c4 = st.columns([2, 2, 2, 3])
             cat = c1.selectbox("Kategori", ["Listrik", "Air", "Internet/Wi-Fi", "Kebersihan", "Perbaikan Kamar", "Gaji Penjaga", "Perlengkapan", "Lainnya"])
@@ -413,15 +455,24 @@ def admin_view():
 
         expenses = conn.execute("SELECT * FROM expenses ORDER BY expense_date DESC").fetchall()
         if expenses:
-            st.markdown('<div class="section-card"><h4>Riwayat Pengeluaran</h4>', unsafe_allow_html=True)
+            st.markdown('<div class="soft-box"><h4>Riwayat Pengeluaran</h4>', unsafe_allow_html=True)
             df_exp = pd.DataFrame([dict(e) for e in expenses])
             st.dataframe(df_exp, use_container_width=True, hide_index=True)
+            col_ed1, col_ed2 = st.columns([3, 1])
+            exp_map = {f"#{e['id']} — {e['category']} ({format_rp(e['amount'])}) [{e['expense_date']}]": e["id"] for e in expenses}
+            sel_del_exp = col_ed1.selectbox("Hapus Pengeluaran (Jika Salah Input)", list(exp_map.keys()), key="del_exp_sel")
+            if col_ed2.button("🗑️ Hapus Pengeluaran", key="del_exp_btn"):
+                conn.execute("DELETE FROM expenses WHERE id = ?", (exp_map[sel_del_exp],))
+                conn.commit()
+                st.success("Data pengeluaran berhasil dihapus.")
+                st.rerun()
+            st.write("")
             st.download_button("⬇️ Unduh Laporan Pengeluaran (CSV)", df_exp.to_csv(index=False).encode("utf-8"), "laporan_pengeluaran.csv", "text/csv")
             st.markdown('</div>', unsafe_allow_html=True)
 
         inv_all = conn.execute("SELECT i.id, t.full_name AS penghuni, r.room_number AS kamar, i.period_month AS periode, i.amount AS nominal, i.status, i.paid_at FROM invoices i JOIN tenants t ON i.tenant_id = t.id LEFT JOIN rooms r ON t.room_id = r.id").fetchall()
         if inv_all:
-            st.markdown('<div class="section-card"><h4>Rekap Tagihan & Pendapatan</h4>', unsafe_allow_html=True)
+            st.markdown('<div class="soft-box"><h4>Rekap Tagihan & Pendapatan</h4>', unsafe_allow_html=True)
             df_inv = pd.DataFrame([dict(x) for x in inv_all])
             st.dataframe(df_inv, use_container_width=True, hide_index=True)
             st.download_button("⬇️ Unduh Rekap Tagihan (CSV)", df_inv.to_csv(index=False).encode("utf-8"), "rekap_tagihan.csv", "text/csv")
@@ -433,20 +484,26 @@ def admin_view():
             st.info("Belum ada keluhan masuk dari penghuni.")
         for c in comps:
             with st.container(border=True):
-                st.write(f"**{c['title']}** — {c['full_name']} (Kamar {c['room_number'] or '-'})")
-                st.write(c["description"])
-                st.caption(f"Waktu: {c['created_at']} | Status: {c['status']}")
+                col_c1, col_c2 = st.columns([4, 1])
+                col_c1.write(f"**{c['title']}** — {c['full_name']} (Kamar {c['room_number'] or '-'})")
+                col_c1.write(c["description"])
+                col_c1.caption(f"Waktu: {c['created_at']} | Status: {c['status']}")
                 if c["status"] != "SELESAI":
-                    if st.button("Tandai Selesai", key=f"comp_{c['id']}"):
+                    if col_c2.button("Tandai Selesai", key=f"comp_{c['id']}"):
                         conn.execute("UPDATE complaints SET status = 'SELESAI' WHERE id = ?", (c["id"],))
                         conn.commit()
                         st.rerun()
+                if col_c2.button("🗑️ Hapus", key=f"del_comp_{c['id']}"):
+                    conn.execute("DELETE FROM complaints WHERE id = ?", (c["id"],))
+                    conn.commit()
+                    st.success("Keluhan berhasil dihapus.")
+                    st.rerun()
 
     conn.close()
 
 def tenant_view():
     conn = get_db()
-    render_banner("🌸 Portal Penghuni Kos", "Cek informasi kamar, bayar tagihan bulanan, unduh kwitansi, dan sampaikan keluhan.")
+    render_banner("🍓 Portal Penghuni Kos", "Cek info kamar, bayar tagihan bulanan, unduh kwitansi, dan sampaikan keluhan.")
     bank_info = conn.execute("SELECT value FROM settings WHERE key='bank_info'").fetchone()
     tenants = conn.execute("SELECT t.*, r.room_number, r.room_type, r.facilities FROM tenants t LEFT JOIN rooms r ON t.room_id = r.id WHERE t.is_active = 1").fetchall()
     if not tenants:
@@ -488,7 +545,7 @@ def tenant_view():
             elif inv["status"] == "LUNAS":
                 receipt = "BUKTI PEMBAYARAN LUNAS - KOS MANAGER\n" + f"Nama: {tenant['full_name']}\n" + f"Kamar: {tenant['room_number']}\n" + f"Periode: {inv['period_month']}\n" + f"Nominal: {format_rp(inv['amount'])} (LUNAS)\n"
                 col3.download_button("📄 Unduh Kwitansi", receipt, file_name=f"kwitansi_{inv['period_month']}.txt", key=f"dl_{inv['id']}")
-    st.markdown('<div class="section-card"><h4>🛠️ Kirim Keluhan</h4>', unsafe_allow_html=True)
+    st.markdown('<div class="soft-box"><h4>💌 Kirim Keluhan</h4>', unsafe_allow_html=True)
     with st.form("complaint_form"):
         title = st.text_input("Judul Keluhan")
         desc = st.text_area("Detail Keluhan")
@@ -501,8 +558,8 @@ def tenant_view():
     st.markdown('</div>', unsafe_allow_html=True)
     conn.close()
 
-st.sidebar.markdown("### 🌸 KOS MANAGER")
-st.sidebar.caption("Smart Boarding House System")
+st.sidebar.markdown("### 🍓 KOS MANAGER")
+st.sidebar.caption("Sweet & Tidy Boarding House")
 mode = st.sidebar.radio("Mode Tampilan", ["Admin / Pengelola Kos", "Portal Penghuni"])
 if mode == "Admin / Pengelola Kos":
     admin_view()
