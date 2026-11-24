@@ -115,11 +115,9 @@ def init_db():
     );
     """)
 
-    # Seed settings
     cur.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('kos_name', 'KOS MANAGER - Smart Boarding House')")
     cur.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('bank_info', 'BCA 1234567890 a.n. Pemilik Kos')")
 
-    # Seed akun default jika belum ada
     admin_exists = cur.execute("SELECT id FROM users WHERE username = 'admin'").fetchone()
     if not admin_exists:
         cur.execute(
@@ -687,6 +685,7 @@ def add_complaint():
     return redirect(url_for("tenant_portal"))
 
 
+init_db()
+
 if __name__ == "__main__":
-    init_db()
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
