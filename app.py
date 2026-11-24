@@ -359,8 +359,8 @@ def admin_dashboard():
         f"<tr><td>{c['full_name']} ({c['room_number'] or '-'})</td><td><b>{c['title']}</b>: {c['description']}</td><td><span class='badge bg-warning text-dark'>{c['status']}</span></td></tr>"
         for c in complaints
     )
-    tenant_opts = "".join(f"<option value="{t['id']}">{t['full_name']} ({format_rp(t['monthly_rate'])})</option>" for t in tenants)
-    avail_room_opts = "".join(f"<option value="{r['id']}">{r['room_number']} - {r['room_type']} ({format_rp(r['monthly_price'])})</option>" for r in avail_rooms)
+    tenant_opts = "".join(f"<option value='{t['id']}'>{t['full_name']} ({format_rp(t['monthly_rate'])})</option>" for t in tenants)
+    avail_room_opts = "".join(f"<option value='{r['id']}'>{r['room_number']} - {r['room_type']} ({format_rp(r['monthly_price'])})</option>" for r in avail_rooms)
 
     body = f"""
     <h3 class="mb-3">Dashboard Admin</h3>
